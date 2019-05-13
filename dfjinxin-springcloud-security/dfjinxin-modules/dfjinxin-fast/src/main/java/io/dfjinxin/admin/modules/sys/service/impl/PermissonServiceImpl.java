@@ -8,11 +8,12 @@
 
 package io.dfjinxin.admin.modules.sys.service.impl;
 
-import com.dfjinxin.auth.client.aspect.PermissonService;
+import com.dfjinxin.common.constant.RedisConstants;
 import io.dfjinxin.admin.modules.sys.dao.SysMenuDao;
 import io.dfjinxin.admin.modules.sys.dao.SysUserDao;
 import io.dfjinxin.admin.modules.sys.entity.SysMenuEntity;
 import io.dfjinxin.admin.common.utils.Constant;
+import io.dfjinxin.admin.modules.sys.service.PermissonService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -27,7 +28,7 @@ public class PermissonServiceImpl implements PermissonService {
     @Autowired
     private SysUserDao sysUserDao;
 
-    @Cacheable(value = "dfjinxin:auth:permissions", key = "#userId")
+    @Cacheable(value = RedisConstants.AUTH_PERMISSION, key = "#userId")
     @Override
     public Set<String> getUserPermissions(long userId) {
         List<String> permsList;

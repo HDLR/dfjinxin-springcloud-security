@@ -40,12 +40,9 @@ import java.util.Map;
  */
 @RestController
 public class SysLoginController extends AbstractController {
-	@Autowired
-	private SysUserService sysUserService;
+
 	@Autowired
 	private SysCaptchaService sysCaptchaService;
-
-	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT);
 
 	/**
 	 * 验证码
@@ -62,39 +59,5 @@ public class SysLoginController extends AbstractController {
 		ServletOutputStream out = response.getOutputStream();
 		ImageIO.write(image, "jpg", out);
 		IOUtils.closeQuietly(out);
-	}
-
-	/**
-	 * 登录
-	 */
-	@IgnoreUserToken
-	@PostMapping("/api/user/validate")
-	public Map<String, Object> login(@RequestBody Map<String,String> body)throws IOException {
-//		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
-//		if(!captcha){
-//			return R.error("验证码不正确");
-//		}
-
-		//用户信息
-		SysUserEntity user = sysUserService.queryByUserName(body.get("username"));
-
-		//账号不存在、密码错误
-		if(user == null || !(encoder.matches(body.get("password"), user.getPassword()))) {
-			return R.error("账号或密码不正确");
-		}
-
-		//账号锁定
-		if(user.getStatus() == 0){
-			return R.error("账号已被锁定,请联系管理员");
-		}
-
-		UserInfo userInfo = new UserInfo();
-		userInfo.setId(String.valueOf(user.getUserId()));
-		userInfo.setUsername(user.getUsername());
-		userInfo.setName(user.getUsername());
-		userInfo.setPassword(user.getPassword());
-//		userInfo.setDescription();
-		R r = R.ok().put("data", userInfo);
-		return r;
 	}
 }

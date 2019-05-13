@@ -8,12 +8,12 @@
 
 package io.dfjinxin.admin.modules.sys.controller;
 
-import com.dfjinxin.auth.client.aspect.PermissonService;
 import com.dfjinxin.common.exception.auth.RRException;
 import com.dfjinxin.common.msg.R;
 import io.dfjinxin.admin.common.annotation.SysLog;
 import io.dfjinxin.admin.common.utils.Constant;
 import io.dfjinxin.admin.modules.sys.entity.SysMenuEntity;
+import io.dfjinxin.admin.modules.sys.service.PermissonService;
 import io.dfjinxin.admin.modules.sys.service.SysMenuService;
 import org.apache.commons.lang.StringUtils;
 import com.dfjinxin.auth.client.annotation.AuthorityPermission;

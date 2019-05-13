@@ -29,11 +29,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String login(JwtAuthenticationRequest authenticationRequest) throws Exception {
-        R r = userService.validate(authenticationRequest);
-//        UserInfo userInfo = (UserInfo)(r.get("data"));
-        UserInfo userInfo = JSON.parseObject(JSON.toJSONString(r.get("data")),UserInfo.class);
-        if (null != userInfo && !StringUtils.isEmpty(userInfo.getId())) {
-            return jwtTokenUtil.generateToken(new JWTInfo(userInfo.getUsername(), userInfo.getId() + "", userInfo.getName()));
+        UserInfo info = userService.validate(authenticationRequest);
+        if (!StringUtils.isEmpty(info.getId())) {
+            return jwtTokenUtil.generateToken(new JWTInfo(info.getUsername(), info.getId() + "", info.getName()));
         }
         throw new UserInvalidException("用户不存在或账户密码错误!");
     }

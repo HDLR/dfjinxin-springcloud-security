@@ -67,6 +67,11 @@ public class GlobalExceptionHandler {
         return r;
     }
 
+    @ExceptionHandler(FeignException.class)
+    public R handleFeignException(FeignException e){
+        return R.error(500, e.getMessage());
+    }
+
 //    @ExceptionHandler(Exception.class)
 //    public R otherExceptionHandler(HttpServletResponse response, Exception ex) {
 //        response.setStatus(500);

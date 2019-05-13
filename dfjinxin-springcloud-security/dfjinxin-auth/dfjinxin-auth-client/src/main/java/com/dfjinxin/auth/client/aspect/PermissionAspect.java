@@ -9,6 +9,7 @@
 package com.dfjinxin.auth.client.aspect;
 
 import com.dfjinxin.auth.client.annotation.AuthorityPermission;
+import com.dfjinxin.auth.client.feign.AdminServiceFeign;
 import com.dfjinxin.auth.client.utils.SpringContextUtils;
 import com.dfjinxin.common.context.BaseContextHandler;
 import com.dfjinxin.common.exception.auth.AuthorizationException;
@@ -38,7 +39,7 @@ import java.util.Set;
 public class PermissionAspect {
 
 	@Autowired
-	private PermissonService permissonService;
+	private AdminServiceFeign adminServiceFeign;
 
 	@Pointcut("@annotation(com.dfjinxin.auth.client.annotation.AuthorityPermission)")
 	public void logPointCut() { 
@@ -55,7 +56,7 @@ public class PermissionAspect {
 
 		long beginTime = System.currentTimeMillis();
 		//判断权限是否有权限
-		Set<String> permissions = permissonService.getUserPermissions(Long.valueOf(BaseContextHandler.getUserID()));
+		Set<String> permissions = adminServiceFeign.permisson(BaseContextHandler.getUserID());
 		if(!(null != permissions && permissions.contains(perssion))){
 			throw new AuthorizationException("无此操作的权限，请联系管理员。");
 		}

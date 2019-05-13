@@ -11,6 +11,7 @@ package io.dfjinxin.admin.modules.sys.controller;
 import com.dfjinxin.auth.client.annotation.AuthorityPermission;
 import com.dfjinxin.common.constant.UserConstant;
 import com.dfjinxin.common.msg.R;
+import io.dfjinxin.admin.common.utils.EncoderUtils;
 import io.dfjinxin.admin.modules.sys.entity.SysUserEntity;
 import io.dfjinxin.admin.modules.sys.form.PasswordForm;
 import io.dfjinxin.admin.modules.sys.service.SysUserService;
@@ -46,9 +47,6 @@ public class SysUserController extends AbstractController {
 	@Autowired
 	private SysUserRoleService sysUserRoleService;
 
-	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT);
-
-
 	/**
 	 * 所有用户列表
 	 */
@@ -81,9 +79,9 @@ public class SysUserController extends AbstractController {
 		Assert.isBlank(form.getNewPassword(), "新密码不为能空");
 		
 		//sha256加密
-		String password = encoder.encode(form.getPassword());
+		String password = EncoderUtils.getInstance().encode(form.getPassword());
 		//sha256加密
-		String newPassword = encoder.encode(form.getNewPassword());
+		String newPassword = EncoderUtils.getInstance().encode(form.getNewPassword());
 
 		//更新密码
 		boolean flag = sysUserService.updatePassword(getUserId(), password, newPassword);

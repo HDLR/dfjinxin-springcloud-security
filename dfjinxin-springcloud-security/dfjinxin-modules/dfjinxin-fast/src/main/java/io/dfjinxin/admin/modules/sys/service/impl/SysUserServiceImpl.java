@@ -13,9 +13,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dfjinxin.common.constant.UserConstant;
 import com.dfjinxin.common.exception.auth.RRException;
-import io.dfjinxin.admin.common.utils.Constant;
-import io.dfjinxin.admin.common.utils.PageUtils;
-import io.dfjinxin.admin.common.utils.Query;
+import io.dfjinxin.admin.common.utils.*;
 import io.dfjinxin.admin.modules.sys.dao.SysUserDao;
 import io.dfjinxin.admin.modules.sys.entity.SysUserEntity;
 import io.dfjinxin.admin.modules.sys.service.SysRoleService;
@@ -54,8 +52,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 	@Autowired
 	private SysRoleService sysRoleService;
 
-	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT);
-
 	@Override
 	public PageUtils queryPage(Map<String, Object> params) {
 		String username = (String)params.get("username");
@@ -92,7 +88,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		user.setCreateTime(new Date());
 		//sha256加密
 		String salt = RandomStringUtils.randomAlphanumeric(20);
-		user.setPassword(encoder.encode(user.getPassword()));
+		user.setPassword(EncoderUtils.getInstance().encode(user.getPassword()));
 		this.save(user);
 		
 		//检查角色是否越权
@@ -108,7 +104,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		if(StringUtils.isBlank(user.getPassword())){
 			user.setPassword(null);
 		}else{
-			user.setPassword(encoder.encode(user.getPassword()));
+			user.setPassword(EncoderUtils.getInstance().encode(user.getPassword()));
 		}
 		this.updateById(user);
 		
