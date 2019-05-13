@@ -16,6 +16,7 @@
     <modules>
         <module>dfjinxin-interface</module>
         <module>dfjinxin-fast</module>
+        <module>dfjinxin-cache</module>
     </modules>
 
     <build>

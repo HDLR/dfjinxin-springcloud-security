@@ -15,6 +15,7 @@ import io.dfjinxin.admin.modules.sys.entity.SysMenuEntity;
 import io.dfjinxin.admin.common.utils.Constant;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -26,6 +27,7 @@ public class PermissonServiceImpl implements PermissonService {
     @Autowired
     private SysUserDao sysUserDao;
 
+    @Cacheable(value = "dfjinxin:auth:permissions", key = "#userId")
     @Override
     public Set<String> getUserPermissions(long userId) {
         List<String> permsList;
