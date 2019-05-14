@@ -5,7 +5,7 @@ import com.dfjinxin.auth.client.config.UserAuthConfig;
 import com.dfjinxin.auth.client.jwt.UserAuthUtil;
 import com.dfjinxin.auth.common.util.jwt.IJWTInfo;
 import com.dfjinxin.common.context.BaseContextHandler;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
