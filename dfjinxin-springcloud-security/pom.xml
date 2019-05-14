@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
-		<!--<boot.admin.client>2.1.2</boot.admin.client>-->
+		<boot.admin.client>2.1.2</boot.admin.client>
 		<boot.admin.version>2.1.2</boot.admin.version>
 		<lombok.version>1.18.4</lombok.version>
 	</properties>

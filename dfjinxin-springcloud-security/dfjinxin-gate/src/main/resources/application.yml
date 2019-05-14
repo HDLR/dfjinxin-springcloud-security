@@ -59,9 +59,9 @@ spring:
      nacos:
         discovery:
           server-addr: 127.0.0.1:8848
-  sentinel:
-    transport:
-      dashboard: localhost:8080
+     sentinel:
+        transport:
+          dashboard: localhost:8080
 logging:
   level:
     com.dfjinxin.gate.v2: info
