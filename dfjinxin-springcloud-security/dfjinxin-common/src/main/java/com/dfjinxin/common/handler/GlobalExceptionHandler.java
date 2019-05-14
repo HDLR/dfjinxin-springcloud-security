@@ -81,7 +81,7 @@ public class GlobalExceptionHandler {
     public R handleException(Exception e){
         logger.error(e.getMessage(), e);
         if(null != e.getMessage()){
-            return R.error("异常信息：\n" + e.getMessage());
+            return R.error(e.getMessage());
         }
         return R.error();
     }

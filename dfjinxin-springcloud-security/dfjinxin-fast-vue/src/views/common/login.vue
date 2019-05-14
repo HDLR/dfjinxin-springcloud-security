@@ -85,7 +85,13 @@
                                 // this.$message.success("登录成功")
                             } else {
                                 // this.getCaptcha()
-                                this.$message.error(data.msg)
+                                // this.$message.error(data.msg)
+                                this.$message.error(
+                                    {
+                                        dangerouslyUseHTMLString: true,
+                                        message:'<strong>提示信息：</strong><br><br>' + data.msg
+                                    }
+                                )
                             }
                         })
                     }

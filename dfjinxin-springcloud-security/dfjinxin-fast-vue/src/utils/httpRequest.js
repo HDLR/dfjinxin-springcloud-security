@@ -40,7 +40,13 @@ http.interceptors.response.use(response => {
         } else { //其余为500, 404...等异常
             var resMsg = response.data.msg
             if(resMsg){
-              Vue.prototype.$message.error(resMsg)
+              // Vue.prototype.$message.error(resMsg)
+                Vue.prototype.$message.error(
+                    {
+                        dangerouslyUseHTMLString: true,
+                        message:'<strong>提示信息：</strong><br><br>' + resMsg
+                    }
+                )
             }
         }
     }
