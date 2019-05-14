@@ -2,7 +2,6 @@ package io.dfjinxin.admin.modules.auth;
 
 import com.dfjinxin.api.vo.user.UserInfo;
 import com.dfjinxin.auth.client.annotation.IgnoreUserToken;
-import com.dfjinxin.cache.service.RedisService;
 import com.dfjinxin.common.constant.RedisConstants;
 import io.dfjinxin.admin.common.annotation.IgnoreResponseAdvice;
 import io.dfjinxin.admin.common.utils.EncoderUtils;
@@ -11,6 +10,7 @@ import io.dfjinxin.admin.modules.sys.entity.SysUserEntity;
 import io.dfjinxin.admin.modules.sys.service.PermissonService;
 import io.dfjinxin.admin.modules.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +28,7 @@ public class AuthController extends AbstractController {
     @Autowired
     private PermissonService permissonService;
     @Autowired
-    private RedisService redisService;
+    private RedisTemplate redisTemplate;
 
     /**
      * 登录
@@ -59,7 +59,7 @@ public class AuthController extends AbstractController {
         }
 
         //验证成功后清除原先redis的权限缓存
-        redisService.delete(RedisConstants.AUTH_PERMISSION + "::" + user.getUserId());
+        redisTemplate.delete(RedisConstants.AUTH_PERMISSION + "::" + user.getUserId());
 
         userInfo.setId(String.valueOf(user.getUserId()));
         userInfo.setUsername(user.getUsername());
