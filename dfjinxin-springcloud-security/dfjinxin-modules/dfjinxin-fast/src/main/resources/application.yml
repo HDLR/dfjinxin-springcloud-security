@@ -108,3 +108,7 @@ management:
         include: '*'
   security:
     enabled: false
+
+admin:
+  application:
+    name: dfjinxin-fast

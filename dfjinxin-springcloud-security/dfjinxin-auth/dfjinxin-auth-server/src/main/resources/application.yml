@@ -115,3 +115,6 @@ auth:
   permission:
     allow: false
 
+admin:
+  application:
+    name: dfjinxin-fast

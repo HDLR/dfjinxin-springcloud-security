@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Set;
 
-@FeignClient(value = "dfjinxin-fast",fallback = AdminServiceFeignFall.class)
+@FeignClient(value = "${admin.application.name}",fallback = AdminServiceFeignFall.class)
 public interface AdminServiceFeign {
 
     @RequestMapping(value = "/api/user/permisson", method = RequestMethod.POST)
