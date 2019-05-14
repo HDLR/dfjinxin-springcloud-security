@@ -49,6 +49,8 @@ spring:
     sentinel:
       transport:
         dashboard: localhost:8080
+  zipkin:
+    base-url: http://192.168.99.100:9411
 mybatis:
   basepackage: com.dfjinxin.auth.server.mapper
   xmlLocation: classpath:mapper/**/*.xml

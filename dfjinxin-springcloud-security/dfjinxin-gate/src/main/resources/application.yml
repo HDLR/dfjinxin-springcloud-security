@@ -62,6 +62,9 @@ spring:
      sentinel:
         transport:
           dashboard: localhost:8080
+  zipkin:
+      base-url: http://192.168.99.100:9411
+
 logging:
   level:
     com.dfjinxin.gate.v2: info
