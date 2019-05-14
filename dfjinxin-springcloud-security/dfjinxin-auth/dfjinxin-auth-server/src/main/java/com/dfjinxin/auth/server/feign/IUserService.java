@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Set;
 
 @FeignClient(value = "${admin.application.name}",fallback = UserServiceFall.class)
-@Service
 public interface IUserService {
 
   @RequestMapping(value = "/api/user/validate", method = RequestMethod.POST)
