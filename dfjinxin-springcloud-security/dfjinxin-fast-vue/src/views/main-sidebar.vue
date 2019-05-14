@@ -13,15 +13,25 @@
         <el-submenu index="demo">
           <template slot="title">
             <icon-svg name="shoucang" class="site-sidebar__menu-icon"></icon-svg>
-            <span>demo</span>
+            <span>系统监控</span>
           </template>
-          <el-menu-item index="demo-echarts" @click="$router.push({ name: 'demo-echarts' })">
-            <icon-svg name="tubiao" class="site-sidebar__menu-icon"></icon-svg>
-            <span slot="title">echarts</span>
+          <el-menu-item index="nacos">
+            <a href="http://localhost:8848/nacos" target="_blank">
+              <icon-svg name="system" class="site-sidebar__menu-icon"></icon-svg>
+              <span slot="title">nacos</span>
+            </a>
           </el-menu-item>
-          <el-menu-item index="demo-ueditor" @click="$router.push({ name: 'demo-ueditor' })">
-            <icon-svg name="editor" class="site-sidebar__menu-icon"></icon-svg>
-            <span slot="title">ueditor</span>
+          <el-menu-item index="sentinel">
+            <a href="http://localhost:8080/#/dashboard" target="_blank">
+              <icon-svg name="suoding" class="site-sidebar__menu-icon"></icon-svg>
+              <span slot="title">sentinel</span>
+            </a>
+          </el-menu-item>
+          <el-menu-item index="admin">
+            <a href="http://localhost:8764" target="_blank">
+              <icon-svg name="tubiao" class="site-sidebar__menu-icon"></icon-svg>
+              <span slot="title">admin</span>
+            </a>
           </el-menu-item>
         </el-submenu>
         <sub-menu
