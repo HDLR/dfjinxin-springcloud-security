@@ -68,16 +68,6 @@ public class WebConfiguration implements WebMvcConfigurer {
      */
     private ArrayList<String> getIncludePathPatterns() {
         ArrayList<String> list = new ArrayList<>();
-//        String[] urls = {
-//                "/element/**",
-//                "/gateLog/**",
-//                "/group/**",
-//                "/groupType/**",
-//                "/menu/**",
-//                "/user/**",
-//                "/api/permissions",
-//                "/api/user/un/**"
-//        };
         String[] urls = {
                 "/sys/**"
         };
