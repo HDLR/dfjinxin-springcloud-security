@@ -11,7 +11,7 @@ package com.dfjinxin.auth.client.annotation;
 import java.lang.annotation.*;
 
 /**
- * 系统日志注解
+ * 系统权限注解
  *
  * @author Mark sunlightcs@gmail.com
  */
